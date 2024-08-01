@@ -1,20 +1,28 @@
+import java.util.ArrayList;
+import java.util.List;
+
 class Solution {
-    public boolean[] kidsWithCandies(int[] candies, int extraCandies) {
+    public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
         int n = candies.length;
-        boolean[] result = new boolean[n];
+        List<Boolean> result = new ArrayList<>();
+        
+        // Find the maximum number of candies any kid currently has
         int maxCandies = candies[0];
         for (int i = 1; i < n; i++) {
             if (candies[i] > maxCandies) {
                 maxCandies = candies[i];
             }
         }
+        
+        // Determine if each kid can have the greatest number of candies
         for (int i = 0; i < n; i++) {
             if (candies[i] + extraCandies >= maxCandies) {
-                result[i] = true;
+                result.add(true);
             } else {
-                result[i] = false;
+                result.add(false);
             }
         }
+        
         return result;
     }
 }
